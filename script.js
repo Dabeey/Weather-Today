@@ -8,12 +8,12 @@ async function checkWeather(city) {
     const response = await fetch(`/weather?city=${city}`);
     var data = await response.json();
 
-    console.log(data)
-
-    if (data.error || !data.main) {
-        alert('Could not fetch weather data. Please check the city name.');
+    if (response.status === 404) {
+        document.querySelector('.error').style.display = "block";
+        document.querySelector('.weather').style.display = "none";
         return;
     }
+
 
     document.querySelector('.city').innerHTML = data.name;
     document.querySelector('.temp').innerHTML = Math.round(data.main.temp) + '°C';
@@ -38,6 +38,9 @@ async function checkWeather(city) {
     else if (data.weather[0].main == "Snow") {
         weatherIcon.src = "images/snow.png";
     }
+
+    document.querySelector('.weather').style.display = "block";
+    document.querySelector('.error').style.display = "none";
 }
 
 searchBtn.addEventListener('click', ()=>{
