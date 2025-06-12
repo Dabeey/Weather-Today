@@ -1,6 +1,6 @@
 # Weather App
 
-![Weather App Banner](images/banner.png)
+![Weather App Banner](banner.png)
 
 A mini weather app project for learning JavaScript. Search for the current weather in any city. The app uses a simple Node.js/Express backend to securely fetch data from the OpenWeatherMap API, keeping your API key safe. Great for practicing JavaScript and API integration.
 
