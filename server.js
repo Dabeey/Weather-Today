@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const fetch = require('node-fetch');
 const app = express();
 const PORT = 3000;
 
@@ -12,11 +11,14 @@ app.get('/weather', async (req, res) => {
     const apiUrl = process.env.API_URL;
     if (!city) return res.status(400).json({ error: 'City is required' });
     const url = `${apiUrl}?units=metric&q=${city}&appid=${apiKey}`;
+    // console.log('Fetching:', url);
+    
     try {
         const response = await fetch(url);
         const data = await response.json();
         res.json(data);
     } catch (err) {
+        console.error(err);
         res.status(500).json({ error: 'Failed to fetch weather data' });
     }
 });
